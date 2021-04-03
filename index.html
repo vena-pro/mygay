@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        html,body {
+        html, body {
             height: 100%;
             width: 100%;
+            position: relative;
             margin: 0;
             padding: 0;
-            position: relative;
+            overflow: hidden;
         }
-        #cube {
-            position: absolute;
+
+        #main {
             width: 56px;
             height: 56px;
             background-color: black;
+            position: absolute;
+            /* transition: ease .25s; */
         }
-        </style>
+    </style>
 </head>
 <body>
-    <div id='cube'></div>
+    <div id='main'></div>
     <script src="script.js"></script>
 </body>
 </html>
