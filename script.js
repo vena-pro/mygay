@@ -1,22 +1,12 @@
 document.onkeydown = checkButton;
 
-let cube = {
-    id: 'cube',
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 100,
-    color: 'black'
-}
-
-let map = {
-    width: 500,
-    height: 500
-}
-
 function checkButton(event) {
+
+    let cubeRight = cube.x + cube.width;
+    let cubeBottom = cube.y + cube.height;
+
+    let mapRight = map.x + map.width;
+    let mapBottom = map.y + map.height;
 
     if (event.keyCode === 37) {
         console.log("ArrowLeft");
@@ -34,18 +24,27 @@ function checkButton(event) {
 
     if (event.keyCode === 39) {
         console.log("ArrowRight");
-        if (cube.x < map.width) {
+        if (cubeRight < mapRight) {
+            if ((mapRight - cubeRight) < cube.step){
+                cube.x += (mapRight - cubeRight);
+            }
+            else {
             cube.x += cube.step;
+            }
         }
     }
 
     if (event.keyCode === 40) {
         console.log("ArrowDown");
-        if (cube.y < map.height) {
+        if (cubeBottom < mapBottom) {
+            if ((mapBottom - cubeBottom) < cube.step){
+                cube.y += (mapBottom - cubeBottom);
+            }
+            else {
             cube.y += cube.step;
+            }
         }
     }
-
     renderCube(cube);
 }
 
@@ -58,4 +57,28 @@ function renderCube(cube) {
     document.getElementById(cube.id).style.backgroundColor = cube.color;
 }
 
-renderCube(cube);
+function renderMap(map) {
+    document.getElementById('map').style.top = map.y + 'px';
+    document.getElementById('map').style.left = map.x + 'px';
+    document.getElementById('map').style.width = map.width + 'px';
+    document.getElementById('map').style.height = map.height + 'px';
+    document.getElementById('map').style.backgroundColor = map.color;
+}
+
+function spawnCube (map, cube){
+    
+    let mapMinX = map.x;
+    let mapMaxX = map.x + map.width - cube.width;
+
+    let mapMinY = map.y;
+    let mapMaxY = map.y + map.height - cube.height;
+    
+    cube.x = math.round(mapMinX + Math.random() * (mapMaxX - mapMinX);
+    cube.y = math.round(mapMinY + Math.random() * (mapMaxY - mapMinY);
+    
+    
+    return cube;
+
+}
+
+renderMap(map);

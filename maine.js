@@ -14,10 +14,9 @@ let map = {
     y: 0,
     width: 500,
     height: 500,
-    color: 'yellow',
-    border: 'f2f2f2'
+    color: 'pink',
+    border: 'f5f5f5'
 }
 
 renderMap(map);
-
-renderCube(cube);
+renderCube(spawnCube(map, cube));
